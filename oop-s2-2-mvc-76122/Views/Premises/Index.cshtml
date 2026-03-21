@@ -1,0 +1,18 @@
+@model IEnumerable<Library.Domain.Premises>
+
+<h2>Premises</h2>
+
+<a href="/Premises/Create">Create New</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
