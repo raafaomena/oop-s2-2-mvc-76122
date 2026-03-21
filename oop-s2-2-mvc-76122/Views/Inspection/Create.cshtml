@@ -1,0 +1,24 @@
+@model Library.Domain.Inspection
+
+<h2>Create Inspection</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>Date</label>
+        <input asp-for="InspectionDate" type="date" />
+    </div>
+
+    <div>
+        <label>Premises</label>
+        <select asp-for="PremisesId">
+            @foreach (var p in ViewBag.Premises)
+            {
+                <option value="@p.Id">@p.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+
+</form>

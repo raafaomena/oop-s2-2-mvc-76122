@@ -1,0 +1,24 @@
+@model IEnumerable<Library.Domain.Inspection>
+
+<h2>Inspections</h2>
+
+<a href="/Inspection/Create">Create New</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Premises</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.InspectionDate.ToShortDateString()</td>
+            <td>@item.Premises?.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
