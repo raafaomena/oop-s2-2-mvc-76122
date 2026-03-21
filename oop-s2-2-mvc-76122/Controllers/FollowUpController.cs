@@ -1,0 +1,46 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using oop_s2_2_mvc_76122.Data;
+using Library.Domain;
+
+namespace oop_s2_2_mvc_76122.Controllers
+{
+    public class FollowUpController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public FollowUpController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var followUps = await _context.FollowUps
+                .Include(f => f.Inspection)
+                .ToListAsync();
+
+            return View(followUps);
+        }
+
+        public IActionResult Create()
+        {
+            ViewBag.Inspections = _context.Inspections.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(FollowUp followUp)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.FollowUps.Add(followUp);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Inspections = _context.Inspections.ToList();
+            return View(followUp);
+        }
+    }
+}
