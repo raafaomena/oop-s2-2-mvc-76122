@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
+using Serilog;
 
 namespace oop_s2_2_mvc_76122.Controllers
 {
@@ -14,33 +14,42 @@ namespace oop_s2_2_mvc_76122.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var followUps = await _context.FollowUps
-                .Include(f => f.Inspection)
-                .ToListAsync();
-
+            var followUps = _context.FollowUps.ToList();
             return View(followUps);
         }
 
         public IActionResult Create()
         {
-            ViewBag.Inspections = _context.Inspections.ToList();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(FollowUp followUp)
+        public IActionResult Create(FollowUp followUp)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.FollowUps.Add(followUp);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                var inspection = _context.Inspections.Find(followUp.InspectionId);
 
-            ViewBag.Inspections = _context.Inspections.ToList();
-            return View(followUp);
+                if (inspection != null && followUp.DueDate < inspection.InspectionDate)
+                {
+                    Log.Warning("FollowUp due date before inspection date");
+                    return View(followUp);
+                }
+
+                _context.FollowUps.Add(followUp);
+                _context.SaveChanges();
+
+                Log.Information("FollowUp created for InspectionId {InspectionId}", followUp.InspectionId);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error creating follow-up");
+                return View("Error");
+            }
         }
     }
 }

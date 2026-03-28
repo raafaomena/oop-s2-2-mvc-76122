@@ -1,0 +1,20 @@
+2026-03-28 14:53:43.655 +00:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-28 14:53:46.982 +00:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 14:53:47.224 +00:00 [INF] Now listening on: http://localhost:5255
+2026-03-28 14:53:47.231 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-28 14:53:47.239 +00:00 [INF] Hosting environment: Development
+2026-03-28 14:53:47.241 +00:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-28 14:53:55.806 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 14:53:55.823 +00:00 [WRN] Failed to determine the https port for redirect.
+2026-03-28 14:53:56.604 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:53:56.742 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:53:56.869 +00:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 14:53:57.064 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:53:57.713 +00:00 [INF] Executed ViewResult - view Index executed in 537.1873ms.
+2026-03-28 14:53:57.735 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 810.3693ms
+2026-03-28 14:53:57.736 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:53:57.762 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 1964.0835ms
+2026-03-28 14:54:33.709 +00:00 [INF] Application is shutting down...
