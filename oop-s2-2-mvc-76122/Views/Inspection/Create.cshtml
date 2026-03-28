@@ -3,30 +3,37 @@
 <h2>Create Inspection</h2>
 
 <form asp-action="Create">
+
     <div>
-        <label asp-for="PremisesId"></label>
-        <input asp-for="PremisesId" />
+        <label>Premises</label>
+        <select asp-for="PremisesId">
+            @foreach (var p in ViewBag.Premises)
+            {
+                <option value="@p.Id">@p.Name</option>
+            }
+        </select>
     </div>
 
     <div>
-        <label asp-for="InspectionDate"></label>
+        <label>Date</label>
         <input asp-for="InspectionDate" />
     </div>
 
     <div>
-        <label asp-for="Score"></label>
+        <label>Score</label>
         <input asp-for="Score" />
     </div>
 
     <div>
-        <label asp-for="Outcome"></label>
+        <label>Outcome</label>
         <input asp-for="Outcome" />
     </div>
 
     <div>
-        <label asp-for="Notes"></label>
+        <label>Notes</label>
         <input asp-for="Notes" />
     </div>
 
     <button type="submit">Save</button>
+
 </form>
