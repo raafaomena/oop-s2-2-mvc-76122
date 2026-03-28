@@ -1,26 +1,20 @@
-@model IEnumerable<Library.Domain.FollowUp>
+@model IEnumerable<oop_s2_2_mvc_76122.Models.FollowUp>
 
-<h2>Follow Ups</h2>
+<h2>FollowUps</h2>
 
-<a href="/FollowUp/Create">Create New</a>
+<a asp-action="Create">Create New</a>
 
 <table>
-    <thead>
     <tr>
-        <th>Date</th>
-        <th>Notes</th>
-        <th>Inspection</th>
+        <th>Due Date</th>
+        <th>Status</th>
     </tr>
-    </thead>
 
-    <tbody>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.FollowUpDate.ToShortDateString()</td>
-            <td>@item.Notes</td>
-            <td>@item.Inspection.InspectionName</td>
+            <td>@item.DueDate</td>
+            <td>@item.Status</td>
         </tr>
     }
-    </tbody>
 </table>

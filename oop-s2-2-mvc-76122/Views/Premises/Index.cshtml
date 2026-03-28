@@ -1,18 +1,22 @@
-@model IEnumerable<Library.Domain.Premises>
+@model IEnumerable<oop_s2_2_mvc_76122.Models.Premises>
 
 <h2>Premises</h2>
-<h3>Premises List</h3>
-<a href="/Premises/Create">Create New</a>
+
+<a asp-action="Create">Create New</a>
 
 <table>
     <tr>
         <th>Name</th>
+        <th>Town</th>
+        <th>Risk</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.Name</td>
+            <td>@item.Town</td>
+            <td>@item.RiskRating</td>
         </tr>
     }
 </table>

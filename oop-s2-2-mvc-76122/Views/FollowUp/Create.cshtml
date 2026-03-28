@@ -1,29 +1,22 @@
-@model Library.Domain.FollowUp
+@model oop_s2_2_mvc_76122.Models.FollowUp
 
 <h2>Create FollowUp</h2>
 
-<form asp-action="Create" method="post">
-
+<form asp-action="Create">
     <div>
-        <label>Date</label>
-        <input asp-for="FollowUpDate" type="date" />
+        <label asp-for="InspectionId"></label>
+        <input asp-for="InspectionId" />
     </div>
 
     <div>
-        <label>Notes</label>
-        <input asp-for="Notes" />
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" />
     </div>
 
     <div>
-        <label>Inspection</label>
-        <select asp-for="InspectionId">
-            @foreach (var i in ViewBag.Inspections)
-            {
-                <option value="@i.Id">@i.InspectionName</option>
-            }
-        </select>
+        <label asp-for="Status"></label>
+        <input asp-for="Status" />
     </div>
 
     <button type="submit">Save</button>
-
 </form>

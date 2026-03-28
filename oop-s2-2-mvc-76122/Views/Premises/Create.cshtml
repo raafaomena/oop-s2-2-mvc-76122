@@ -1,8 +1,27 @@
-@model Library.Domain.Premises
+@model oop_s2_2_mvc_76122.Models.Premises
 
 <h2>Create Premises</h2>
 
 <form asp-action="Create">
-    <input asp-for="Name" placeholder="Name" />
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" />
+    </div>
+
+    <div>
+        <label asp-for="Town"></label>
+        <input asp-for="Town" />
+    </div>
+
+    <div>
+        <label asp-for="RiskRating"></label>
+        <input asp-for="RiskRating" />
+    </div>
+
     <button type="submit">Save</button>
 </form>

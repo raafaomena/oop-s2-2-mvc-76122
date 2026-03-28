@@ -1,3 +1,5 @@
+namespace oop_s2_2_mvc_76122.Models;
+
 public class Inspection
 {
     public int Id { get; set; }

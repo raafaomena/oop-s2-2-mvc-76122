@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
-using Library.Domain;
+using oop_s2_2_mvc_76122.Models;
 
 namespace oop_s2_2_mvc_76122.Controllers
 {
