@@ -1,0 +1,196 @@
+2026-03-28 16:16:33.486 +00:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 16:16:33.699 +00:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-28 16:16:33.787 +00:00 [INF] Now listening on: http://localhost:5255
+2026-03-28 16:16:33.791 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-28 16:16:33.793 +00:00 [INF] Hosting environment: Development
+2026-03-28 16:16:33.793 +00:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-28 16:17:15.247 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 16:17:15.416 +00:00 [WRN] Failed to determine the https port for redirect.
+2026-03-28 16:17:15.644 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:15.749 +00:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:15.805 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:15.979 +00:00 [INF] Executed ViewResult - view Index executed in 176.9588ms.
+2026-03-28 16:17:16.002 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 249.3643ms
+2026-03-28 16:17:16.005 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:16.086 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 794.0342ms
+2026-03-28 16:17:20.282 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-28 16:17:20.287 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:20.314 +00:00 [INF] Route matched with {action = "Index", controller = "Dashboard"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:21.641 +00:00 [INF] Executed DbCommand (24ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0
+2026-03-28 16:17:21.652 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0 AND "i"."Outcome" = 'Fail'
+2026-03-28 16:17:21.665 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.') AND "f"."Status" = 'Open'
+2026-03-28 16:17:21.671 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:21.700 +00:00 [INF] Executed ViewResult - view Index executed in 32.2067ms.
+2026-03-28 16:17:21.700 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 381.0148ms
+2026-03-28 16:17:21.701 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:21.744 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 1463.8062ms
+2026-03-28 16:17:23.367 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-28 16:17:23.372 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:23.376 +00:00 [INF] Route matched with {action = "Index", controller = "FollowUp"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:23.609 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-28 16:17:23.611 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:23.620 +00:00 [INF] Executed ViewResult - view Index executed in 9.8374ms.
+2026-03-28 16:17:23.621 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 244.2056ms
+2026-03-28 16:17:23.621 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:23.622 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 254.5137ms
+2026-03-28 16:17:25.015 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-28 16:17:25.016 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:25.018 +00:00 [INF] Route matched with {action = "Index", controller = "Inspection"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:25.159 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score", "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Inspections" AS "i"
+INNER JOIN "Premises" AS "p" ON "i"."PremisesId" = "p"."Id"
+2026-03-28 16:17:25.161 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:25.178 +00:00 [INF] Executed ViewResult - view Index executed in 17.8072ms.
+2026-03-28 16:17:25.179 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 160.4177ms
+2026-03-28 16:17:25.179 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:25.180 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 164.2417ms
+2026-03-28 16:17:25.717 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-28 16:17:25.719 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:25.740 +00:00 [INF] Route matched with {action = "Index", controller = "Premises"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:25.904 +00:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-28 16:17:26.210 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:26.221 +00:00 [INF] Executed ViewResult - view Index executed in 11.848ms.
+2026-03-28 16:17:26.250 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 509.2686ms
+2026-03-28 16:17:26.266 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:26.267 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 549.3732ms
+2026-03-28 16:17:26.482 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 16:17:26.483 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:26.484 +00:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 16:17:26.485 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:17:26.487 +00:00 [INF] Executed ViewResult - view Index executed in 1.8999ms.
+2026-03-28 16:17:26.488 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 3.2318ms
+2026-03-28 16:17:26.488 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:17:26.488 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 6.3555ms
+2026-03-28 16:17:55.320 +00:00 [INF] Application is shutting down...
+2026-03-28 16:27:09.520 +00:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 16:28:46.347 +00:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-28 16:28:46.551 +00:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-03-28 16:28:46.572 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-03-28 16:28:46.565665+00:00');
+SELECT changes();
+2026-03-28 16:28:46.735 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-03-28 16:28:46.758 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-03-28 16:28:46.764 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-03-28 16:28:46.812 +00:00 [INF] Applying migration '20260328162813_SeedDataFix'.
+2026-03-28 16:28:46.831 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetRoleClaims";
+2026-03-28 16:28:46.832 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserClaims";
+2026-03-28 16:28:46.834 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserLogins";
+2026-03-28 16:28:46.836 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserRoles";
+2026-03-28 16:28:46.838 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserTokens";
+2026-03-28 16:28:46.839 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetRoles";
+2026-03-28 16:28:46.841 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUsers";
+2026-03-28 16:28:46.841 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260328162813_SeedDataFix', '9.0.0');
+2026-03-28 16:28:46.854 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-03-28 16:29:14.029 +00:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 16:29:14.585 +00:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-28 16:29:14.594 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-03-28 16:29:14.602 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-03-28 16:29:14.596673+00:00');
+SELECT changes();
+2026-03-28 16:29:14.755 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-03-28 16:29:14.775 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-03-28 16:29:14.780 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-03-28 16:29:14.809 +00:00 [INF] No migrations were applied. The database is already up to date.
+2026-03-28 16:29:14.821 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-03-28 16:29:14.827 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 16:29:14.882 +00:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-28 16:29:15.031 +00:00 [INF] Now listening on: http://localhost:5255
+2026-03-28 16:29:15.039 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-28 16:29:15.041 +00:00 [INF] Hosting environment: Development
+2026-03-28 16:29:15.041 +00:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-28 16:29:37.617 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 16:29:37.642 +00:00 [WRN] Failed to determine the https port for redirect.
+2026-03-28 16:29:37.921 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:38.133 +00:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 16:29:38.876 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-28 16:29:39.500 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-28 16:29:48.188 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:48.194 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:48.247 +00:00 [INF] Route matched with {action = "Index", controller = "FollowUp"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 16:29:48.295 +00:00 [INF] Route matched with {action = "Index", controller = "Dashboard"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-28 16:29:48.665 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:29:49.867 +00:00 [INF] Executed ViewResult - view Index executed in 1314.0902ms.
+2026-03-28 16:29:49.919 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 1776.3934ms
+2026-03-28 16:29:49.921 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:49.947 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 12340.909ms
+2026-03-28 16:29:50.131 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-28 16:29:50.166 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:29:50.378 +00:00 [INF] Executed ViewResult - view Index executed in 215.5148ms.
+2026-03-28 16:29:50.381 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 2114.6407ms
+2026-03-28 16:29:50.381 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:51.181 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 11680.6181ms
+2026-03-28 16:29:52.182 +00:00 [INF] Executed DbCommand (192ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0
+2026-03-28 16:29:53.376 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0 AND "i"."Outcome" = 'Fail'
+2026-03-28 16:29:55.473 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.') AND "f"."Status" = 'Open'
+2026-03-28 16:29:55.481 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 16:29:55.543 +00:00 [INF] Executed ViewResult - view Index executed in 66.773ms.
+2026-03-28 16:29:55.544 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 7249.046ms
+2026-03-28 16:29:55.544 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 16:29:55.546 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 16670.5856ms
+2026-03-28 16:29:57.628 +00:00 [INF] Application is shutting down...

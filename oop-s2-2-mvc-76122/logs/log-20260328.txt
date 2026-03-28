@@ -18,3 +18,254 @@ SELECT EXISTS (
 2026-03-28 14:53:57.736 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
 2026-03-28 14:53:57.762 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 1964.0835ms
 2026-03-28 14:54:33.709 +00:00 [INF] Application is shutting down...
+2026-03-28 14:57:28.477 +00:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-28 14:57:32.368 +00:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 14:57:32.569 +00:00 [INF] Now listening on: http://localhost:5255
+2026-03-28 14:57:32.587 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-28 14:57:32.590 +00:00 [INF] Hosting environment: Development
+2026-03-28 14:57:32.591 +00:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-28 14:57:36.761 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 14:57:36.790 +00:00 [WRN] Failed to determine the https port for redirect.
+2026-03-28 14:57:37.371 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:37.443 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:37.626 +00:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 14:57:37.661 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:57:38.742 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/jquery/dist/jquery.min.js - null null
+2026-03-28 14:57:38.742 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-03-28 14:57:38.743 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/css/site.css - null null
+2026-03-28 14:57:38.803 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-03-28 14:57:38.981 +00:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: '/Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css'
+2026-03-28 14:57:38.981 +00:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: '/Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122/wwwroot/css/site.css'
+2026-03-28 14:57:38.981 +00:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: '/Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122/wwwroot/lib/jquery/dist/jquery.min.js'
+2026-03-28 14:57:39.017 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/css/site.css - 200 637 text/css 274.4213ms
+2026-03-28 14:57:38.748 +00:00 [INF] Executed ViewResult - view Index executed in 989.0019ms.
+2026-03-28 14:57:38.986 +00:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: '/Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js'
+2026-03-28 14:57:39.017 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/css/bootstrap.min.css - 200 232803 text/css 212.2101ms
+2026-03-28 14:57:39.017 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/jquery/dist/jquery.min.js - 200 87533 text/javascript 276.1572ms
+2026-03-28 14:57:39.163 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80721 text/javascript 419.864ms
+2026-03-28 14:57:39.165 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 1535.9278ms
+2026-03-28 14:57:39.165 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:39.181 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 2440.2534ms
+2026-03-28 14:57:43.858 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-28 14:57:43.871 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:43.872 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:43.911 +00:00 [INF] Route matched with {action = "Index", controller = "Premises", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-28 14:57:44.138 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-28 14:57:44.287 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:57:44.312 +00:00 [INF] Executed ViewResult - view Index executed in 26.7217ms.
+2026-03-28 14:57:44.314 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 401.348ms
+2026-03-28 14:57:44.330 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:44.581 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 722.7285ms
+2026-03-28 14:57:47.992 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-28 14:57:48.004 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:48.005 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 404 0 null 13.3876ms
+2026-03-28 14:57:48.008 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/Inspection, Response status code: 404
+2026-03-28 14:57:53.496 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-28 14:57:53.499 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:53.500 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:53.505 +00:00 [INF] Route matched with {action = "Index", controller = "FollowUp", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 14:57:53.928 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-28 14:57:53.932 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:57:53.945 +00:00 [INF] Executed ViewResult - view Index executed in 15.5871ms.
+2026-03-28 14:57:53.962 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 456.2186ms
+2026-03-28 14:57:53.964 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:53.964 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 468.0266ms
+2026-03-28 14:57:55.854 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-28 14:57:55.856 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:55.856 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:55.878 +00:00 [INF] Route matched with {action = "Index", controller = "Dashboard", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-28 14:57:56.051 +00:00 [INF] Executed DbCommand (6ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0
+2026-03-28 14:57:56.069 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0 AND "i"."Outcome" = 'Fail'
+2026-03-28 14:57:56.082 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.') AND "f"."Status" = 'Open'
+2026-03-28 14:57:56.086 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:57:56.114 +00:00 [INF] Executed ViewResult - view Index executed in 30.4677ms.
+2026-03-28 14:57:56.115 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 236.4907ms
+2026-03-28 14:57:56.116 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:57:56.116 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 262.3892ms
+2026-03-28 14:57:58.391 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-28 14:57:58.392 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:57:58.393 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 404 0 null 1.436ms
+2026-03-28 14:57:58.393 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/Inspection, Response status code: 404
+2026-03-28 14:58:06.793 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-28 14:58:06.794 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:58:06.794 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:58:06.795 +00:00 [INF] Route matched with {action = "Index", controller = "Premises", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-28 14:58:06.798 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-28 14:58:06.800 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 14:58:06.804 +00:00 [INF] Executed ViewResult - view Index executed in 4.2901ms.
+2026-03-28 14:58:06.805 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 9.8044ms
+2026-03-28 14:58:06.805 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 14:58:06.805 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 12.4106ms
+2026-03-28 14:58:08.363 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises/Create - null null
+2026-03-28 14:58:08.365 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 14:58:08.365 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 14:58:08.367 +00:00 [INF] Route matched with {action = "Create", controller = "Premises", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-28 14:58:08.370 +00:00 [INF] Executing ViewResult, running view Create.
+2026-03-28 14:58:08.466 +00:00 [INF] Executed ViewResult - view Create executed in 97.5514ms.
+2026-03-28 14:58:08.466 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122) in 98.5131ms
+2026-03-28 14:58:08.466 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 14:58:08.466 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises/Create - 200 null text/html; charset=utf-8 103.4183ms
+2026-03-28 15:01:07.124 +00:00 [INF] Application is shutting down...
+2026-03-28 15:01:22.224 +00:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-28 15:01:24.388 +00:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-28 15:01:24.566 +00:00 [INF] Now listening on: http://localhost:5255
+2026-03-28 15:01:24.574 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-28 15:01:24.576 +00:00 [INF] Hosting environment: Development
+2026-03-28 15:01:24.578 +00:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-28 15:01:29.449 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-28 15:01:29.989 +00:00 [WRN] Failed to determine the https port for redirect.
+2026-03-28 15:01:30.604 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:30.674 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:31.495 +00:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:31.631 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:32.171 +00:00 [INF] Executed ViewResult - view Index executed in 556.2665ms.
+2026-03-28 15:01:34.957 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 3459.1836ms
+2026-03-28 15:01:34.958 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:35.109 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 5670.9554ms
+2026-03-28 15:01:37.890 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-28 15:01:37.900 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:37.901 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:37.906 +00:00 [INF] Route matched with {action = "Index", controller = "Inspection", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:38.148 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score", "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Inspections" AS "i"
+INNER JOIN "Premises" AS "p" ON "i"."PremisesId" = "p"."Id"
+2026-03-28 15:01:38.152 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:38.166 +00:00 [INF] Executed ViewResult - view Index executed in 15.6121ms.
+2026-03-28 15:01:38.167 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 260.1156ms
+2026-03-28 15:01:38.167 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:38.304 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 416.0253ms
+2026-03-28 15:01:39.485 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection/Create - null null
+2026-03-28 15:01:39.496 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:39.497 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:39.500 +00:00 [INF] Route matched with {action = "Create", controller = "Inspection", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:39.683 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-28 15:01:39.801 +00:00 [INF] Executing ViewResult, running view Create.
+2026-03-28 15:01:39.911 +00:00 [INF] Executed ViewResult - view Create executed in 110.5833ms.
+2026-03-28 15:01:39.911 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Create (oop-s2-2-mvc-76122) in 410.989ms
+2026-03-28 15:01:39.912 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:39.912 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection/Create - 200 null text/html; charset=utf-8 426.8892ms
+2026-03-28 15:01:41.748 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-28 15:01:41.749 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:41.749 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:41.752 +00:00 [INF] Route matched with {action = "Index", controller = "FollowUp", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:41.768 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-28 15:01:41.773 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:41.788 +00:00 [INF] Executed ViewResult - view Index executed in 16.5666ms.
+2026-03-28 15:01:41.806 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 53.6679ms
+2026-03-28 15:01:41.820 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:41.820 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 72.4907ms
+2026-03-28 15:01:42.830 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp/Create - null null
+2026-03-28 15:01:42.831 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:42.832 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:42.836 +00:00 [INF] Route matched with {action = "Create", controller = "FollowUp", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:42.839 +00:00 [INF] Executing ViewResult, running view Create.
+2026-03-28 15:01:42.891 +00:00 [INF] Executed ViewResult - view Create executed in 54.2983ms.
+2026-03-28 15:01:42.896 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Create (oop-s2-2-mvc-76122) in 60.365ms
+2026-03-28 15:01:42.897 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Create (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:42.898 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp/Create - 200 null text/html; charset=utf-8 67.9872ms
+2026-03-28 15:01:44.280 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-28 15:01:44.281 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:44.282 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:44.300 +00:00 [INF] Route matched with {action = "Index", controller = "Dashboard", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:44.447 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0
+2026-03-28 15:01:44.457 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0 AND "i"."Outcome" = 'Fail'
+2026-03-28 15:01:44.468 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.') AND "f"."Status" = 'Open'
+2026-03-28 15:01:44.471 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:44.486 +00:00 [INF] Executed ViewResult - view Index executed in 16.4586ms.
+2026-03-28 15:01:44.486 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 185.2918ms
+2026-03-28 15:01:44.487 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:44.487 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 207.4734ms
+2026-03-28 15:01:48.508 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-28 15:01:48.509 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:48.509 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:48.517 +00:00 [INF] Route matched with {action = "Index", controller = "Premises", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:48.553 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-28 15:01:48.564 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:48.572 +00:00 [INF] Executed ViewResult - view Index executed in 9.5764ms.
+2026-03-28 15:01:48.573 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 55.5802ms
+2026-03-28 15:01:48.573 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:48.573 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 64.968ms
+2026-03-28 15:01:50.038 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-28 15:01:50.038 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:50.039 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:50.039 +00:00 [INF] Route matched with {action = "Index", controller = "Inspection", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:50.050 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score", "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Inspections" AS "i"
+INNER JOIN "Premises" AS "p" ON "i"."PremisesId" = "p"."Id"
+2026-03-28 15:01:50.051 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:50.053 +00:00 [INF] Executed ViewResult - view Index executed in 2.1196ms.
+2026-03-28 15:01:50.054 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 13.6496ms
+2026-03-28 15:01:50.054 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:50.054 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 16.7622ms
+2026-03-28 15:01:51.374 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-28 15:01:51.375 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:51.375 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:51.375 +00:00 [INF] Route matched with {action = "Index", controller = "FollowUp", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:51.376 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-28 15:01:51.377 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:51.378 +00:00 [INF] Executed ViewResult - view Index executed in 1.5525ms.
+2026-03-28 15:01:51.379 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 3.1906ms
+2026-03-28 15:01:51.379 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:51.380 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 4.9279ms
+2026-03-28 15:01:52.131 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-28 15:01:52.132 +00:00 [INF] Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+2026-03-28 15:01:52.132 +00:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:52.133 +00:00 [INF] Route matched with {action = "Index", controller = "Dashboard", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-28 15:01:52.139 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0
+2026-03-28 15:01:52.141 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__thisMonth_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Inspections" AS "i"
+WHERE CAST(strftime('%m', "i"."InspectionDate") AS INTEGER) = @__thisMonth_0 AND "i"."Outcome" = 'Fail'
+2026-03-28 15:01:52.146 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.') AND "f"."Status" = 'Open'
+2026-03-28 15:01:52.149 +00:00 [INF] Executing ViewResult, running view Index.
+2026-03-28 15:01:52.151 +00:00 [INF] Executed ViewResult - view Index executed in 2.1914ms.
+2026-03-28 15:01:52.152 +00:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 17.9448ms
+2026-03-28 15:01:52.152 +00:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-28 15:01:52.153 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 21.866ms
+2026-03-28 15:02:43.411 +00:00 [INF] Application is shutting down...

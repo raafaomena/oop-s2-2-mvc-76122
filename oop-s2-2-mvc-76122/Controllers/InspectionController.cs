@@ -1,45 +1,58 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
 using Serilog;
 
-public class InspectionController : Controller
+namespace oop_s2_2_mvc_76122.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public InspectionController(ApplicationDbContext context)
+    public class InspectionController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Create(Inspection inspection)
-    {
-        try
+        public InspectionController(ApplicationDbContext context)
         {
-            if (inspection.Score < 0 || inspection.Score > 100)
-            {
-                Log.Warning("Invalid score {Score} for inspection", inspection.Score);
-                return View(inspection);
-            }
-
-            _context.Inspections.Add(inspection);
-            _context.SaveChanges();
-
-            Log.Information("Inspection created with PremisesId {PremisesId} and Score {Score}",
-                inspection.PremisesId, inspection.Score);
-
-            return RedirectToAction("Index");
+            _context = context;
         }
-        catch (Exception ex)
+
+        public IActionResult Index()
         {
-            Log.Error(ex, "Error creating inspection");
-            return View("Error");
+            var inspections = _context.Inspections
+                .Include(i => i.Premises)
+                .ToList();
+
+            return View(inspections);
+        }
+
+        public IActionResult Create()
+        {
+            ViewBag.Premises = _context.Premises.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Inspection inspection)
+        {
+            try
+            {
+                if (inspection.Score < 0 || inspection.Score > 100)
+                {
+                    Log.Warning("Invalid score {Score}", inspection.Score);
+                    return View(inspection);
+                }
+
+                _context.Inspections.Add(inspection);
+                _context.SaveChanges();
+
+                Log.Information("Inspection created for PremisesId {PremisesId}", inspection.PremisesId);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error creating inspection");
+                return View("Error");
+            }
         }
     }
 }
