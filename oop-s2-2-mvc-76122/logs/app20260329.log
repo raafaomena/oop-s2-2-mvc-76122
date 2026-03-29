@@ -1,0 +1,514 @@
+2026-03-29 21:25:54.395 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2026-03-29 21:25:54.519 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-29 21:25:54.535 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-03-29 21:25:54.537 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2026-03-29 21:25:54.542 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-03-29 20:25:54.541003+00:00');
+SELECT changes();
+2026-03-29 21:25:54.661 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-03-29 21:25:54.676 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-03-29 21:25:54.680 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-03-29 21:25:54.716 +01:00 [INF] Applying migration '20260328143232_InitialCreate'.
+2026-03-29 21:25:54.788 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoles" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_AspNetRoles" PRIMARY KEY,
+    "Name" TEXT NULL,
+    "NormalizedName" TEXT NULL,
+    "ConcurrencyStamp" TEXT NULL
+);
+2026-03-29 21:25:54.788 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUsers" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_AspNetUsers" PRIMARY KEY,
+    "UserName" TEXT NULL,
+    "NormalizedUserName" TEXT NULL,
+    "Email" TEXT NULL,
+    "NormalizedEmail" TEXT NULL,
+    "EmailConfirmed" INTEGER NOT NULL,
+    "PasswordHash" TEXT NULL,
+    "SecurityStamp" TEXT NULL,
+    "ConcurrencyStamp" TEXT NULL,
+    "PhoneNumber" TEXT NULL,
+    "PhoneNumberConfirmed" INTEGER NOT NULL,
+    "TwoFactorEnabled" INTEGER NOT NULL,
+    "LockoutEnd" TEXT NULL,
+    "LockoutEnabled" INTEGER NOT NULL,
+    "AccessFailedCount" INTEGER NOT NULL
+);
+2026-03-29 21:25:54.789 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Premises" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Premises" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Address" TEXT NOT NULL,
+    "Town" TEXT NOT NULL,
+    "RiskRating" TEXT NOT NULL
+);
+2026-03-29 21:25:54.790 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoleClaims" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY AUTOINCREMENT,
+    "RoleId" TEXT NOT NULL,
+    "ClaimType" TEXT NULL,
+    "ClaimValue" TEXT NULL,
+    CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.790 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserClaims" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY AUTOINCREMENT,
+    "UserId" TEXT NOT NULL,
+    "ClaimType" TEXT NULL,
+    "ClaimValue" TEXT NULL,
+    CONSTRAINT "FK_AspNetUserClaims_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.791 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserLogins" (
+    "LoginProvider" TEXT NOT NULL,
+    "ProviderKey" TEXT NOT NULL,
+    "ProviderDisplayName" TEXT NULL,
+    "UserId" TEXT NOT NULL,
+    CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey"),
+    CONSTRAINT "FK_AspNetUserLogins_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.792 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserRoles" (
+    "UserId" TEXT NOT NULL,
+    "RoleId" TEXT NOT NULL,
+    CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_AspNetUserRoles_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.793 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserTokens" (
+    "UserId" TEXT NOT NULL,
+    "LoginProvider" TEXT NOT NULL,
+    "Name" TEXT NOT NULL,
+    "Value" TEXT NULL,
+    CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name"),
+    CONSTRAINT "FK_AspNetUserTokens_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.793 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Inspections" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Inspections" PRIMARY KEY AUTOINCREMENT,
+    "PremisesId" INTEGER NOT NULL,
+    "InspectionDate" TEXT NOT NULL,
+    "Score" INTEGER NOT NULL,
+    "Outcome" TEXT NOT NULL,
+    "Notes" TEXT NOT NULL,
+    CONSTRAINT "FK_Inspections_Premises_PremisesId" FOREIGN KEY ("PremisesId") REFERENCES "Premises" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.795 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "FollowUps" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_FollowUps" PRIMARY KEY AUTOINCREMENT,
+    "InspectionId" INTEGER NOT NULL,
+    "DueDate" TEXT NOT NULL,
+    "Status" TEXT NOT NULL,
+    "ClosedDate" TEXT NULL,
+    CONSTRAINT "FK_FollowUps_Inspections_InspectionId" FOREIGN KEY ("InspectionId") REFERENCES "Inspections" ("Id") ON DELETE CASCADE
+);
+2026-03-29 21:25:54.796 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON "AspNetRoleClaims" ("RoleId");
+2026-03-29 21:25:54.796 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "RoleNameIndex" ON "AspNetRoles" ("NormalizedName");
+2026-03-29 21:25:54.797 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserClaims_UserId" ON "AspNetUserClaims" ("UserId");
+2026-03-29 21:25:54.798 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserLogins_UserId" ON "AspNetUserLogins" ("UserId");
+2026-03-29 21:25:54.799 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserRoles_RoleId" ON "AspNetUserRoles" ("RoleId");
+2026-03-29 21:25:54.799 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "EmailIndex" ON "AspNetUsers" ("NormalizedEmail");
+2026-03-29 21:25:54.800 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "UserNameIndex" ON "AspNetUsers" ("NormalizedUserName");
+2026-03-29 21:25:54.801 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_FollowUps_InspectionId" ON "FollowUps" ("InspectionId");
+2026-03-29 21:25:54.802 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Inspections_PremisesId" ON "Inspections" ("PremisesId");
+2026-03-29 21:25:54.802 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260328143232_InitialCreate', '9.0.0');
+2026-03-29 21:25:54.803 +01:00 [INF] Applying migration '20260328162813_SeedDataFix'.
+2026-03-29 21:25:54.817 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetRoleClaims";
+2026-03-29 21:25:54.818 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserClaims";
+2026-03-29 21:25:54.819 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserLogins";
+2026-03-29 21:25:54.819 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserRoles";
+2026-03-29 21:25:54.820 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUserTokens";
+2026-03-29 21:25:54.821 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetRoles";
+2026-03-29 21:25:54.822 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "AspNetUsers";
+2026-03-29 21:25:54.822 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260328162813_SeedDataFix', '9.0.0');
+2026-03-29 21:25:54.850 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-03-29 21:25:55.263 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Premises" AS "p")
+2026-03-29 21:25:55.484 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 3), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.505 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 4), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.505 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 6), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.506 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 3), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.506 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 4), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.507 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 6), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.507 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 3), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.508 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 4), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.508 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (Size = 6), @p2='?' (Size = 6), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.508 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 9), @p1='?' (Size = 6), @p2='?' (Size = 3), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.509 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 9), @p1='?' (Size = 6), @p2='?' (Size = 4), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.509 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 9), @p1='?' (Size = 6), @p2='?' (Size = 6), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Premises" ("Address", "Name", "RiskRating", "Town")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.581 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.584 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.585 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.585 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.586 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.587 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.588 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.589 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.590 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.591 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.592 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.593 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.594 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.595 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.595 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.596 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.597 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.598 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.599 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.600 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.601 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.602 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.603 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.604 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.604 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 13), @p2='?' (Size = 4), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Inspections" ("InspectionDate", "Notes", "Outcome", "PremisesId", "Score")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2026-03-29 21:25:55.647 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.651 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.653 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.654 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.655 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.656 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.657 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.658 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.658 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 4)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.659 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FollowUps" ("ClosedDate", "DueDate", "InspectionId", "Status")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2026-03-29 21:25:55.765 +01:00 [INF] User profile is available. Using '/Users/rafaelaomena/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-29 21:25:55.853 +01:00 [INF] Now listening on: http://localhost:5255
+2026-03-29 21:25:55.856 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-29 21:25:55.857 +01:00 [INF] Hosting environment: Development
+2026-03-29 21:25:55.857 +01:00 [INF] Content root path: /Users/rafaelaomena/RiderProjects/oop-s2-2-mvc-76122/oop-s2-2-mvc-76122
+2026-03-29 21:26:06.017 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-29 21:26:06.332 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:06.406 +01:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:10.717 +01:00 [INF] Home page accessed
+2026-03-29 21:26:10.830 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:11.027 +01:00 [INF] Executed ViewResult - view Index executed in 213.7466ms.
+2026-03-29 21:26:11.054 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 383.6417ms
+2026-03-29 21:26:11.056 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:11.133 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 5255.9909ms
+2026-03-29 21:26:11.360 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-03-29 21:26:11.366 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/css/site.css - null null
+2026-03-29 21:26:11.377 +01:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2026-03-29 21:26:11.379 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/css/bootstrap.min.css - 304 null text/css 19.2878ms
+2026-03-29 21:26:11.393 +01:00 [INF] The file /css/site.css was not modified
+2026-03-29 21:26:11.402 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/jquery/dist/jquery.min.js - null null
+2026-03-29 21:26:11.404 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/css/site.css - 304 null text/css 37.5894ms
+2026-03-29 21:26:11.404 +01:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2026-03-29 21:26:11.405 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/jquery/dist/jquery.min.js - 304 null text/javascript 2.8639ms
+2026-03-29 21:26:11.405 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-03-29 21:26:11.408 +01:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2026-03-29 21:26:11.408 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 304 null text/javascript 2.9804ms
+2026-03-29 21:26:15.612 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-29 21:26:15.616 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:15.639 +01:00 [INF] Route matched with {action = "Index", controller = "Premises"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:17.151 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-29 21:26:17.257 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:17.417 +01:00 [INF] Executed ViewResult - view Index executed in 138.7456ms.
+2026-03-29 21:26:17.417 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 1777.5095ms
+2026-03-29 21:26:17.418 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:17.494 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 1882.2408ms
+2026-03-29 21:26:27.481 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-29 21:26:27.483 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:27.492 +01:00 [INF] Route matched with {action = "Index", controller = "Inspection"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:27.502 +01:00 [INF] Viewing inspections list
+2026-03-29 21:26:27.632 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score"
+FROM "Inspections" AS "i"
+2026-03-29 21:26:27.648 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:27.658 +01:00 [INF] Executed ViewResult - view Index executed in 11.678ms.
+2026-03-29 21:26:27.658 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 165.5601ms
+2026-03-29 21:26:27.658 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:27.659 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 177.712ms
+2026-03-29 21:26:34.230 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-29 21:26:34.232 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:34.234 +01:00 [INF] Route matched with {action = "Index", controller = "Inspection"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:34.236 +01:00 [INF] Viewing inspections list
+2026-03-29 21:26:34.239 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score"
+FROM "Inspections" AS "i"
+2026-03-29 21:26:34.242 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:34.245 +01:00 [INF] Executed ViewResult - view Index executed in 3.9976ms.
+2026-03-29 21:26:34.246 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 11.6212ms
+2026-03-29 21:26:34.247 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:34.248 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 17.4872ms
+2026-03-29 21:26:35.179 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-29 21:26:35.180 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:35.188 +01:00 [INF] Route matched with {action = "Index", controller = "FollowUp"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:35.192 +01:00 [INF] Viewing follow-ups list
+2026-03-29 21:26:35.207 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-29 21:26:35.214 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:35.236 +01:00 [INF] Executed ViewResult - view Index executed in 24.646ms.
+2026-03-29 21:26:35.237 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 47.8223ms
+2026-03-29 21:26:35.237 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:35.238 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 58.5993ms
+2026-03-29 21:26:38.646 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Dashboard - null null
+2026-03-29 21:26:38.647 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:38.671 +01:00 [INF] Route matched with {action = "Index", controller = "Dashboard"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, System.String) on controller oop_s2_2_mvc_76122.Controllers.DashboardController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:38.875 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "FollowUps" AS "f"
+WHERE "f"."Status" = 'Open' AND "f"."DueDate" < rtrim(rtrim(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime'), '0'), '.')
+2026-03-29 21:26:39.023 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score", "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Inspections" AS "i"
+INNER JOIN "Premises" AS "p" ON "i"."PremisesId" = "p"."Id"
+2026-03-29 21:26:39.039 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:39.145 +01:00 [INF] Executed ViewResult - view Index executed in 109.4362ms.
+2026-03-29 21:26:39.146 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122) in 474.6565ms
+2026-03-29 21:26:39.146 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.DashboardController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:39.146 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Dashboard - 200 null text/html; charset=utf-8 500.5401ms
+2026-03-29 21:26:45.236 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-29 21:26:45.238 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:45.239 +01:00 [INF] Route matched with {action = "Index", controller = "Premises"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:45.241 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-29 21:26:45.242 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:45.244 +01:00 [INF] Executed ViewResult - view Index executed in 2.1177ms.
+2026-03-29 21:26:45.244 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 5.1176ms
+2026-03-29 21:26:45.244 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:45.245 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 8.5843ms
+2026-03-29 21:26:46.889 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-29 21:26:46.889 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:46.890 +01:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:46.891 +01:00 [INF] Home page accessed
+2026-03-29 21:26:46.891 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:46.893 +01:00 [INF] Executed ViewResult - view Index executed in 2.2751ms.
+2026-03-29 21:26:46.894 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 3.2912ms
+2026-03-29 21:26:46.894 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:46.894 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 5.5757ms
+2026-03-29 21:26:48.248 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Inspection - null null
+2026-03-29 21:26:48.249 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:48.249 +01:00 [INF] Route matched with {action = "Index", controller = "Inspection"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.InspectionController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:48.251 +01:00 [INF] Viewing inspections list
+2026-03-29 21:26:48.255 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "i"."Id", "i"."InspectionDate", "i"."Notes", "i"."Outcome", "i"."PremisesId", "i"."Score"
+FROM "Inspections" AS "i"
+2026-03-29 21:26:48.257 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:48.261 +01:00 [INF] Executed ViewResult - view Index executed in 4.2592ms.
+2026-03-29 21:26:48.263 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122) in 11.9375ms
+2026-03-29 21:26:48.264 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.InspectionController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:48.264 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Inspection - 200 null text/html; charset=utf-8 16.0709ms
+2026-03-29 21:26:49.079 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/FollowUp - null null
+2026-03-29 21:26:49.079 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:49.079 +01:00 [INF] Route matched with {action = "Index", controller = "FollowUp"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.FollowUpController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:49.080 +01:00 [INF] Viewing follow-ups list
+2026-03-29 21:26:49.081 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."ClosedDate", "f"."DueDate", "f"."InspectionId", "f"."Status"
+FROM "FollowUps" AS "f"
+2026-03-29 21:26:49.084 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:49.089 +01:00 [INF] Executed ViewResult - view Index executed in 8.1304ms.
+2026-03-29 21:26:49.090 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122) in 10.2907ms
+2026-03-29 21:26:49.090 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.FollowUpController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:49.090 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/FollowUp - 200 null text/html; charset=utf-8 11.7584ms
+2026-03-29 21:26:50.049 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises - null null
+2026-03-29 21:26:50.049 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:50.050 +01:00 [INF] Route matched with {action = "Index", controller = "Premises"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:50.051 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Address", "p"."Name", "p"."RiskRating", "p"."Town"
+FROM "Premises" AS "p"
+2026-03-29 21:26:50.052 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:50.056 +01:00 [INF] Executed ViewResult - view Index executed in 3.5013ms.
+2026-03-29 21:26:50.056 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122) in 6.119ms
+2026-03-29 21:26:50.056 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:50.057 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises - 200 null text/html; charset=utf-8 7.7615ms
+2026-03-29 21:26:51.046 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/Premises/Create - null null
+2026-03-29 21:26:51.047 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:51.050 +01:00 [INF] Route matched with {action = "Create", controller = "Premises"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller oop_s2_2_mvc_76122.Controllers.PremisesController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:51.144 +01:00 [INF] Executing ViewResult, running view Create.
+2026-03-29 21:26:51.219 +01:00 [INF] Executed ViewResult - view Create executed in 77.9514ms.
+2026-03-29 21:26:51.220 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122) in 79.9096ms
+2026-03-29 21:26:51.220 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.PremisesController.Create (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:51.220 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/Premises/Create - 200 null text/html; charset=utf-8 173.9556ms
+2026-03-29 21:26:54.588 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-03-29 21:26:54.590 +01:00 [INF] Executing endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:54.591 +01:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oop_s2_2_mvc_76122.Controllers.HomeController (oop-s2-2-mvc-76122).
+2026-03-29 21:26:54.786 +01:00 [INF] Home page accessed
+2026-03-29 21:26:54.786 +01:00 [INF] Executing ViewResult, running view Index.
+2026-03-29 21:26:54.788 +01:00 [INF] Executed ViewResult - view Index executed in 1.909ms.
+2026-03-29 21:26:54.789 +01:00 [INF] Executed action oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122) in 3.1135ms
+2026-03-29 21:26:54.790 +01:00 [INF] Executed endpoint 'oop_s2_2_mvc_76122.Controllers.HomeController.Index (oop-s2-2-mvc-76122)'
+2026-03-29 21:26:54.790 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 200 null text/html; charset=utf-8 201.9755ms
+2026-03-29 21:31:18.087 +01:00 [INF] Application is shutting down...

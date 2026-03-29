@@ -1,21 +1,24 @@
-@model oop_s2_2_mvc_76122.Models.DashboardViewModel
+@model List<oop_s2_2_mvc_76122.Models.Inspection>
 
 <h2>Dashboard</h2>
 
-<form method="get">
-    <label>Town:</label>
-    <input type="text" name="town" value="@Model.SelectedTown" />
+<p>Overdue FollowUps: @ViewBag.Overdue</p>
 
-    <label>Risk:</label>
-    <input type="text" name="risk" value="@Model.SelectedRisk" />
+<table class="table">
+    <tr>
+        <th>Premises</th>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Outcome</th>
+    </tr>
 
-    <button type="submit">Filter</button>
-</form>
-
-<hr />
-
-<div>
-    <h3>Inspections This Month: @Model.InspectionsThisMonth</h3>
-    <h3>Failed Inspections: @Model.FailedInspections</h3>
-    <h3>Overdue Follow-Ups: @Model.OverdueFollowUps</h3>
-</div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Premises?.Name</td>
+            <td>@item.InspectionDate</td>
+            <td>@item.Score</td>
+            <td>@item.Outcome</td>
+        </tr>
+    }
+</table>

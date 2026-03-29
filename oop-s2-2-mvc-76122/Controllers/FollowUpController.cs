@@ -1,54 +1,56 @@
 using Microsoft.AspNetCore.Mvc;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
-using Serilog;
+using Microsoft.EntityFrameworkCore;
 
 namespace oop_s2_2_mvc_76122.Controllers
 {
     public class FollowUpController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<FollowUpController> _logger;
 
-        public FollowUpController(ApplicationDbContext context)
+        public FollowUpController(ApplicationDbContext context, ILogger<FollowUpController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var followUps = _context.FollowUps.ToList();
-            return View(followUps);
+            _logger.LogInformation("Viewing follow-ups list");
+
+            var list = await _context.FollowUps.ToListAsync();
+            return View(list);
         }
 
         public IActionResult Create()
         {
+            _logger.LogInformation("Opening create follow-up page");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(FollowUp followUp)
+        public async Task<IActionResult> Create(FollowUp followUp)
         {
             try
             {
-                var inspection = _context.Inspections.Find(followUp.InspectionId);
+                _logger.LogInformation("Creating FollowUp for Inspection {InspectionId}", followUp.InspectionId);
 
-                if (inspection != null && followUp.DueDate < inspection.InspectionDate)
+                if (followUp.DueDate < DateTime.Now)
                 {
-                    Log.Warning("FollowUp due date before inspection date");
-                    return View(followUp);
+                    _logger.LogWarning("FollowUp due date is in the past");
                 }
 
-                _context.FollowUps.Add(followUp);
-                _context.SaveChanges();
+                _context.Add(followUp);
+                await _context.SaveChangesAsync();
 
-                Log.Information("FollowUp created for InspectionId {InspectionId}", followUp.InspectionId);
-
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error creating follow-up");
-                return View("Error");
+                _logger.LogError(ex, "Error creating follow-up");
+                return View(followUp);
             }
         }
     }

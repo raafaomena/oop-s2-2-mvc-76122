@@ -1,31 +1,26 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using oop_s2_2_mvc_76122.Models;
 
-namespace oop_s2_2_mvc_76122.Controllers;
-
-public class HomeController : Controller
+namespace oop_s2_2_mvc_76122.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ILogger<HomeController> _logger;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            _logger.LogInformation("Home page accessed");
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Error()
+        {
+            _logger.LogError("Error page triggered");
+            return View();
+        }
     }
 }

@@ -1,57 +1,56 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
-using Serilog;
+using Microsoft.EntityFrameworkCore;
 
 namespace oop_s2_2_mvc_76122.Controllers
 {
     public class InspectionController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<InspectionController> _logger;
 
-        public InspectionController(ApplicationDbContext context)
+        public InspectionController(ApplicationDbContext context, ILogger<InspectionController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var inspections = _context.Inspections
-                .Include(i => i.Premises)
-                .ToList();
+            _logger.LogInformation("Viewing inspections list");
 
+            var inspections = await _context.Inspections.ToListAsync();
             return View(inspections);
         }
 
         public IActionResult Create()
         {
-            ViewBag.Premises = _context.Premises.ToList();
+            _logger.LogInformation("Opening create inspection page");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Inspection inspection)
+        public async Task<IActionResult> Create(Inspection inspection)
         {
             try
             {
+                _logger.LogInformation("Creating inspection for Premises {PremisesId}", inspection.PremisesId);
+
                 if (inspection.Score < 0 || inspection.Score > 100)
                 {
-                    Log.Warning("Invalid score {Score}", inspection.Score);
-                    return View(inspection);
+                    _logger.LogWarning("Invalid inspection score: {Score}", inspection.Score);
                 }
 
-                _context.Inspections.Add(inspection);
-                _context.SaveChanges();
+                _context.Add(inspection);
+                await _context.SaveChangesAsync();
 
-                Log.Information("Inspection created for PremisesId {PremisesId}", inspection.PremisesId);
-
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error creating inspection");
-                return View("Error");
+                _logger.LogError(ex, "Error creating inspection");
+                return View(inspection);
             }
         }
     }
