@@ -1,20 +1,30 @@
-@model IEnumerable<oop_s2_2_mvc_76122.Models.FollowUp>
+<h2>Follow Ups</h2>
 
-<h2>FollowUps</h2>
+@if (User.IsInRole("Admin") || User.IsInRole("Inspector"))
+{
+    <a class="btn btn-primary mb-3" href="/FollowUp/Create">+ New FollowUp</a>
+}
 
-<a asp-action="Create">Create New</a>
-
-<table>
+<table class="table table-striped">
     <tr>
-        <th>Due Date</th>
         <th>Status</th>
+        <th>Due Date</th>
+        <th>Actions</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.DueDate</td>
             <td>@item.Status</td>
+            <td>@item.DueDate</td>
+            <td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-danger btn-sm" href="/FollowUp/Delete/@item.Id">Delete</a>
+                }
+
+            </td>
         </tr>
     }
 </table>

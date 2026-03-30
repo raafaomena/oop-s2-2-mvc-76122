@@ -1,57 +1,74 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
-using Microsoft.EntityFrameworkCore;
 
-namespace oop_s2_2_mvc_76122.Controllers
+namespace oop_s2_2_mvc_76122.Controllers;
+
+public class InspectionController : Controller
 {
-    public class InspectionController : Controller
+    private readonly ApplicationDbContext _context;
+
+    public InspectionController(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        private readonly ILogger<InspectionController> _logger;
+        _context = context;
+    }
 
-        public InspectionController(ApplicationDbContext context, ILogger<InspectionController> logger)
+    // LIST
+    public async Task<IActionResult> Index()
+    {
+        var inspections = await _context.Inspections
+            .Include(i => i.Premises)
+            .ToListAsync();
+
+        return View(inspections);
+    }
+
+    // CREATE
+    public IActionResult Create()
+    {
+        ViewBag.Premises = _context.Premises.ToList();
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(Inspection inspection)
+    {
+        _context.Add(inspection);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    // EDIT
+    public async Task<IActionResult> Edit(int id)
+    {
+        var inspection = await _context.Inspections.FindAsync(id);
+        ViewBag.Premises = _context.Premises.ToList();
+
+        return View(inspection);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Inspection inspection)
+    {
+        _context.Update(inspection);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    // DELETE
+    public async Task<IActionResult> Delete(int id)
+    {
+        var inspection = await _context.Inspections.FindAsync(id);
+
+        if (inspection != null)
         {
-            _context = context;
-            _logger = logger;
+            _context.Inspections.Remove(inspection);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<IActionResult> Index()
-        {
-            _logger.LogInformation("Viewing inspections list");
-
-            var inspections = await _context.Inspections.ToListAsync();
-            return View(inspections);
-        }
-
-        public IActionResult Create()
-        {
-            _logger.LogInformation("Opening create inspection page");
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Inspection inspection)
-        {
-            try
-            {
-                _logger.LogInformation("Creating inspection for Premises {PremisesId}", inspection.PremisesId);
-
-                if (inspection.Score < 0 || inspection.Score > 100)
-                {
-                    _logger.LogWarning("Invalid inspection score: {Score}", inspection.Score);
-                }
-
-                _context.Add(inspection);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error creating inspection");
-                return View(inspection);
-            }
-        }
+        return RedirectToAction(nameof(Index));
     }
 }

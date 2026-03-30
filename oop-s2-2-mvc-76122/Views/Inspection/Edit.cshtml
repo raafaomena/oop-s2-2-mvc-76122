@@ -1,0 +1,26 @@
+@model oop_s2_2_mvc_76122.Models.Inspection
+
+<h2>Edit Inspection</h2>
+
+<form method="post">
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <select name="PremisesId" class="form-control mb-2">
+        @foreach (var p in ViewBag.Premises)
+        {
+            <option value="@p.Id">@p.Name</option>
+        }
+    </select>
+
+    <input name="InspectionDate" value="@Model.InspectionDate" class="form-control mb-2" />
+
+    <input name="Score" value="@Model.Score" class="form-control mb-2" />
+
+    <input name="Outcome" value="@Model.Outcome" class="form-control mb-2" />
+
+    <input name="Notes" value="@Model.Notes" class="form-control mb-2" />
+
+    <button class="btn btn-warning">Update</button>
+
+</form>

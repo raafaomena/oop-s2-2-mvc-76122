@@ -1,24 +1,68 @@
 @model List<oop_s2_2_mvc_76122.Models.Inspection>
 
-<h2>Inspections</h2>
+@{
+    ViewData["Title"] = "Inspections";
+}
 
-<a asp-action="Create">Create New</a>
+<h2 class="mb-3">Inspections</h2>
 
-<table class="table">
+
+@if (User.IsInRole("Admin") || User.IsInRole("Inspector"))
+{
+    <a class="btn btn-primary mb-3" href="/Inspection/Create">
+        + New Inspection
+    </a>
+}
+
+<table class="table table-striped table-bordered">
+
+    <thead class="table-dark">
     <tr>
+        <th>Premises</th>
         <th>Date</th>
         <th>Score</th>
         <th>Outcome</th>
-        <th>Premises</th>
+        <th>Actions</th>
     </tr>
+    </thead>
 
+    <tbody>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.InspectionDate</td>
-            <td>@item.Score</td>
-            <td>@item.Outcome</td>
             <td>@item.Premises?.Name</td>
+            <td>@item.InspectionDate.ToString("dd/MM/yyyy")</td>
+            <td>@item.Score</td>
+            <td>
+                @if (item.Outcome == "Fail")
+                {
+                    <span class="badge bg-danger">Fail</span>
+                }
+                else
+                {
+                    <span class="badge bg-success">Pass</span>
+                }
+            </td>
+
+            <td>
+
+                <!-- 🔹 ADMIN ONLY -->
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-warning btn-sm"
+                       href="/Inspection/Edit/@item.Id">
+                        Edit
+                    </a>
+
+                    <a class="btn btn-danger btn-sm"
+                       href="/Inspection/Delete/@item.Id">
+                        Delete
+                    </a>
+                }
+
+            </td>
         </tr>
     }
+    </tbody>
+
 </table>

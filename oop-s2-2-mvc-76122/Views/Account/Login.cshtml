@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post" class="w-25">
+
+    <div class="mb-2">
+        <input name="email" class="form-control" placeholder="Email" />
+    </div>
+
+    <div class="mb-2">
+        <input name="password" type="password" class="form-control" placeholder="Password" />
+    </div>
+
+    <button class="btn btn-dark w-100">Login</button>
+
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p class="text-danger mt-2">@ViewBag.Error</p>
+}
+
+<hr />
+
+<h5>Quick Login (Testing)</h5>
+
+<a href="/Account/QuickLogin?role=Admin" class="btn btn-danger">Admin</a>
+<a href="/Account/QuickLogin?role=Inspector" class="btn btn-warning">Inspector</a>
+<a href="/Account/QuickLogin?role=Viewer" class="btn btn-secondary">Viewer</a>

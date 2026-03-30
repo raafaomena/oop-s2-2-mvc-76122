@@ -1,74 +1,67 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - oop_s2_2_mvc_76122</title>
+    <title>Food Safety</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
-        <div class="container-fluid">
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
 
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                Food Safety App
-            </a>
+        <a class="navbar-brand" href="/Dashboard">Food Safety</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div>
 
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <span class="text-white me-3">
+                    @User.Identity.Name
 
-                <ul class="navbar-nav flex-grow-1">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <span class="badge bg-danger">Admin</span>
+                    }
+                    else if (User.IsInRole("Inspector"))
+                    {
+                        <span class="badge bg-warning text-dark">Inspector</span>
+                    }
+                    else if (User.IsInRole("Viewer"))
+                    {
+                        <span class="badge bg-secondary">Viewer</span>
+                    }
+                </span>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
+                <a class="btn btn-light me-2" href="/Dashboard">Dashboard</a>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Premises" asp-action="Index">Premises</a>
-                    </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-light me-2" href="/Premises">Premises</a>
+                }
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Inspection" asp-action="Index">Inspection</a>
-                    </li>
+                @if (User.IsInRole("Admin") || User.IsInRole("Inspector"))
+                {
+                    <a class="btn btn-light me-2" href="/Inspection">Inspections</a>
+                    <a class="btn btn-light me-2" href="/FollowUp">FollowUps</a>
+                }
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="FollowUp" asp-action="Index">FollowUp</a>
-                    </li>
+                <a class="btn btn-outline-light" href="/Account/Logout">Logout</a>
+            }
+            else
+            {
+                <a class="btn btn-outline-light" href="/Account/Login">Login</a>
+            }
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                    </li>
-
-                </ul>
-
-            </div>
         </div>
-    </nav>
-</header>
 
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2026 - Food Safety Inspection Tracker
     </div>
-</footer>
+</nav>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-@RenderSection("Scripts", required: false)
+<div class="container mt-4">
+    @RenderBody()
+</div>
 
 </body>
 </html>
