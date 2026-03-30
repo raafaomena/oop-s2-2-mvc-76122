@@ -1,24 +1,134 @@
-@model List<oop_s2_2_mvc_76122.Models.Inspection>
+@model oop_s2_2_mvc_76122.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
 
-<h2>Dashboard</h2>
+<div class="container mt-4">
+    <h1 class="mb-4">Food Safety Dashboard</h1>
 
-<p>Overdue FollowUps: @ViewBag.Overdue</p>
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Filters</h5>
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label for="town" class="form-label">Town</label>
+                    <select name="town" id="town" class="form-select">
+                        <option value="">All Towns</option>
+                        @foreach (var town in Model.Towns)
+                        {
+                            <option value="@town" selected="@(Model.SelectedTown == town)">
+                                @town
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="riskRating" class="form-label">Risk Rating</label>
+                    <select name="riskRating" id="riskRating" class="form-select">
+                        <option value="">All Ratings</option>
+                        <option value="Low" selected="@(Model.SelectedRiskRating == RiskRating.Low)">Low</option>
+                        <option value="Medium" selected="@(Model.SelectedRiskRating == RiskRating.Medium)">Medium</option>
+                        <option value="High" selected="@(Model.SelectedRiskRating == RiskRating.High)">High</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">Apply Filters</button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Clear</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<table class="table">
-    <tr>
-        <th>Premises</th>
-        <th>Date</th>
-        <th>Score</th>
-        <th>Outcome</th>
-    </tr>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Inspections This Month</h5>
+                    <h2 class="display-4">@Model.InspectionsThisMonth</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Failed Inspections</h5>
+                    <h2 class="display-4">@Model.FailedInspectionsThisMonth</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Overdue Follow-ups</h5>
+                    <h2 class="display-4">@Model.OverdueFollowUps</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Open Follow-ups</h5>
+                    <h2 class="display-4">@Model.OpenFollowUps</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Premises?.Name</td>
-            <td>@item.InspectionDate</td>
-            <td>@item.Score</td>
-            <td>@item.Outcome</td>
-        </tr>
-    }
-</table>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Overall Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Total Premises:</th>
+                            <td>@Model.TotalPremises</td>
+                        </tr>
+                        <tr>
+                            <th>Total Inspections:</th>
+                            <td>@Model.TotalInspections</td>
+                        </tr>
+                        <tr>
+                            <th>Open Follow-ups:</th>
+                            <td>@Model.OpenFollowUps</td>
+                        </tr>
+                        <tr>
+                            <th>Overdue Follow-ups:</th>
+                            <td class="text-danger fw-bold">@Model.OverdueFollowUps</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Available Towns</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach (var town in Model.Towns)
+                        {
+                            <li class="list-group-item">@town</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('town')?.addEventListener('change', function() {
+            this.closest('form').submit();
+        });
+        document.getElementById('riskRating')?.addEventListener('change', function() {
+            this.closest('form').submit();
+        });
+    </script>
+}

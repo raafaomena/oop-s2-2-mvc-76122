@@ -1,57 +1,85 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using oop_s2_2_mvc_76122.Models;
 
-namespace oop_s2_2_mvc_76122.Controllers;
-
-public class AccountController : Controller
+namespace oop_s2_2_mvc_76122.Controllers
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
-
-    public AccountController(SignInManager<IdentityUser> signInManager)
+    public class AccountController : Controller
     {
-        _signInManager = signInManager;
-    }
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ILogger<AccountController> _logger;
 
-    // 🔹 LOGIN NORMAL
-    public IActionResult Login()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Login(string email, string password)
-    {
-        var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
-
-        if (result.Succeeded)
-            return RedirectToAction("Index", "Dashboard");
-
-        ViewBag.Error = "Invalid login";
-        return View();
-    }
-
-    // 🔹 QUICK LOGIN (ESSENCIAL PRA TESTAR ROLES)
-    public async Task<IActionResult> QuickLogin(string role)
-    {
-        string email = role switch
+        public AccountController(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            ILogger<AccountController> logger)
         {
-            "Admin" => "admin@test.com",
-            "Inspector" => "inspector@test.com",
-            "Viewer" => "viewer@test.com",
-            _ => "admin@test.com"
-        };
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _logger = logger;
+        }
 
-        await _signInManager.SignOutAsync();
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
 
-        await _signInManager.PasswordSignInAsync(email, role + "123!", false, false);
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                ViewBag.Error = "Email and password are required";
+                return View();
+            }
 
-        return RedirectToAction("Index", "Dashboard");
-    }
+            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+            
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User logged in: {Email}", email);
+                return RedirectToAction("Index", "Dashboard");
+            }
+            
+            ViewBag.Error = "Invalid login attempt";
+            return View();
+        }
 
-    // 🔹 LOGOUT
-    public async Task<IActionResult> Logout()
-    {
-        await _signInManager.SignOutAsync();
-        return RedirectToAction("Login");
+        public async Task<IActionResult> QuickLogin(string role)
+        {
+            var email = $"{role?.ToLower()}@foodsafety.com";
+            var password = $"{role}@123";
+            
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                _logger.LogWarning("User not found: {Email}", email);
+                return RedirectToAction("Login");
+            }
+
+            await _signInManager.SignOutAsync();
+            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+            
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("Quick login as {Role}: {Email}", role, email);
+                return RedirectToAction("Index", "Dashboard");
+            }
+            
+            _logger.LogWarning("Quick login failed for {Email}", email);
+            return RedirectToAction("Login");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out");
+            return RedirectToAction("Login");
+        }
     }
 }

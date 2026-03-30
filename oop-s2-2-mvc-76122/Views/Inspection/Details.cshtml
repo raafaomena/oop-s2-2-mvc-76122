@@ -1,0 +1,100 @@
+@model oop_s2_2_mvc_76122.Models.Inspection
+@{
+    ViewData["Title"] = "Inspection Details";
+}
+
+<h1>Inspection Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Premises
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Premises?.Name
+        </dd>
+        <dt class="col-sm-2">
+            Inspection Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.InspectionDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            Score
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Score
+        </dd>
+        <dt class="col-sm-2">
+            Outcome
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Outcome.ToString() == "Fail")
+            {
+                <span class="badge bg-danger">Fail</span>
+            }
+            else
+            {
+                <span class="badge bg-success">Pass</span>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Notes
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Notes
+        </dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <h3>Follow-ups</h3>
+    @if (Model.FollowUps != null && Model.FollowUps.Any())
+    {
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Closed Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var followUp in Model.FollowUps)
+                {
+                    <tr>
+                        <td>@followUp.DueDate.ToShortDateString()</td>
+                        <td>
+                            @if (followUp.Status.ToString() == "Open")
+                            {
+                                <span class="badge bg-warning">Open</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Closed</span>
+                            }
+                        </td>
+                        <td>@(followUp.ClosedDate?.ToShortDateString() ?? "N/A")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No follow-ups scheduled.</p>
+    }
+</div>
+
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Inspector"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

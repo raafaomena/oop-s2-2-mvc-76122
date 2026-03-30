@@ -1,0 +1,99 @@
+@model oop_s2_2_mvc_76122.Models.Premises
+@{
+    ViewData["Title"] = "Premises Details";
+}
+
+<h1>Premises Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Town)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Town)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RiskRating)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.RiskRating.ToString() == "High")
+            {
+                <span class="badge bg-danger">@Model.RiskRating</span>
+            }
+            else if (Model.RiskRating.ToString() == "Medium")
+            {
+                <span class="badge bg-warning">@Model.RiskRating</span>
+            }
+            else
+            {
+                <span class="badge bg-success">@Model.RiskRating</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <h3>Inspections</h3>
+    @if (Model.Inspections != null && Model.Inspections.Any())
+    {
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Score</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                    <th>Follow-ups</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inspection in Model.Inspections)
+                {
+                    <tr>
+                        <td>@inspection.InspectionDate.ToShortDateString()</td>
+                        <td>@inspection.Score</td>
+                        <td>
+                            @if (inspection.Outcome.ToString() == "Fail")
+                            {
+                                <span class="badge bg-danger">Fail</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Pass</span>
+                            }
+                        </td>
+                        <td>@inspection.Notes</td>
+                        <td>@inspection.FollowUps?.Count()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No inspections recorded.</p>
+    }
+</div>
+
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

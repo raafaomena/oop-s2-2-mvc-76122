@@ -1,0 +1,55 @@
+@model oop_s2_2_mvc_76122.Models.FollowUp
+@{
+    ViewData["Title"] = "Follow-up Details";
+}
+
+<h1>Follow-up Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Inspection
+        </dt>
+        <dd class="col-sm-10">
+            Inspection #@Model.Inspection?.Id - @Model.Inspection?.Premises?.Name
+        </dd>
+        <dt class="col-sm-2">
+            Due Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DueDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Status.ToString() == "Open")
+            {
+                <span class="badge bg-warning">Open</span>
+            }
+            else
+            {
+                <span class="badge bg-success">Closed</span>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Closed Date
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.ClosedDate?.ToShortDateString() ?? "N/A")
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Inspector"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

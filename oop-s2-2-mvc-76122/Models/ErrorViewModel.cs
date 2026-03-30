@@ -1,8 +1,9 @@
-namespace oop_s2_2_mvc_76122.Models;
-
-public class ErrorViewModel
+namespace oop_s2_2_mvc_76122.Models
 {
-    public string? RequestId { get; set; }
-
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    public class ErrorViewModel
+    {
+        public string? RequestId { get; set; }
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string? ErrorMessage { get; set; }
+    }
 }

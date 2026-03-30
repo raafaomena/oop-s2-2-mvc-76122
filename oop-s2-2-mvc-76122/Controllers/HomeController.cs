@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using oop_s2_2_mvc_76122.Models;
 
 namespace oop_s2_2_mvc_76122.Controllers
 {
@@ -17,10 +18,15 @@ namespace oop_s2_2_mvc_76122.Controllers
             return View();
         }
 
-        public IActionResult Error()
+        public IActionResult Error(string message)
         {
-            _logger.LogError("Error page triggered");
-            return View();
+            _logger.LogError("Error page triggered: {Message}", message);
+            var errorViewModel = new ErrorViewModel
+            {
+                RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                ErrorMessage = message
+            };
+            return View(errorViewModel);
         }
     }
 }

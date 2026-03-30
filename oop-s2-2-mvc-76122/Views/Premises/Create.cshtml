@@ -2,26 +2,13 @@
 
 <h2>Create Premises</h2>
 
-<form asp-action="Create">
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
-    </div>
+<form asp-action="Create" method="post">
 
-    <div>
-        <label asp-for="Address"></label>
-        <input asp-for="Address" />
-    </div>
+    <input asp-for="Name" class="form-control mb-2" placeholder="Name" />
+    <input asp-for="Address" class="form-control mb-2" placeholder="Address" />
+    <input asp-for="Town" class="form-control mb-2" placeholder="Town" />
+    <input asp-for="RiskRating" class="form-control mb-2" placeholder="Low/Medium/High" />
 
-    <div>
-        <label asp-for="Town"></label>
-        <input asp-for="Town" />
-    </div>
+    <button type="submit" class="btn btn-success">Save</button>
 
-    <div>
-        <label asp-for="RiskRating"></label>
-        <input asp-for="RiskRating" />
-    </div>
-
-    <button type="submit">Save</button>
 </form>
