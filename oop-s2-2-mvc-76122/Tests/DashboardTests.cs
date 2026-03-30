@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using oop_s2_2_mvc_76122.Data;
 using oop_s2_2_mvc_76122.Models;
 using Xunit;
-using System;
-using System.Linq;
 
 namespace oop_s2_2_mvc_76122.Tests
 {
@@ -62,10 +60,7 @@ namespace oop_s2_2_mvc_76122.Tests
         {
             var context = GetDbContext();
             var today = DateTime.Today;
-
-            var overdueCount = context.FollowUps
-                .Count(f => f.Status == Status.Open && f.DueDate < today);
-
+            var overdueCount = context.FollowUps.Count(f => f.Status == Status.Open && f.DueDate < today);
             Assert.Equal(1, overdueCount);
         }
 
@@ -75,19 +70,37 @@ namespace oop_s2_2_mvc_76122.Tests
             var context = GetDbContext();
             var today = DateTime.Today;
             var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
-
-            var inspectionsThisMonth = context.Inspections
-                .Count(i => i.InspectionDate >= firstDayOfMonth);
-            
-            var failedInspections = context.Inspections
-                .Count(i => i.InspectionDate >= firstDayOfMonth && i.Outcome == Outcome.Fail);
-            
-            var overdueFollowUps = context.FollowUps
-                .Count(f => f.Status == Status.Open && f.DueDate < today);
-
+            var inspectionsThisMonth = context.Inspections.Count(i => i.InspectionDate >= firstDayOfMonth);
+            var failedInspections = context.Inspections.Count(i => i.InspectionDate >= firstDayOfMonth && i.Outcome == Outcome.Fail);
+            var overdueFollowUps = context.FollowUps.Count(f => f.Status == Status.Open && f.DueDate < today);
             Assert.Equal(1, inspectionsThisMonth);
             Assert.Equal(1, failedInspections);
             Assert.Equal(1, overdueFollowUps);
+        }
+
+        [Fact]
+        public void FollowUp_CanBeCreatedWithValidData()
+        {
+            var context = GetDbContext();
+            var followUp = new FollowUp
+            {
+                InspectionId = 1,
+                DueDate = DateTime.Today.AddDays(10),
+                Status = Status.Open,
+                ClosedDate = null
+            };
+            context.FollowUps.Add(followUp);
+            context.SaveChanges();
+            Assert.Equal(2, context.FollowUps.Count());
+        }
+
+        [Fact]
+        public void Premises_HasCorrectRiskRating()
+        {
+            var context = GetDbContext();
+            var premises = context.Premises.FirstOrDefault(p => p.Id == 1);
+            Assert.NotNull(premises);
+            Assert.Equal(RiskRating.Medium, premises.RiskRating);
         }
     }
 }
